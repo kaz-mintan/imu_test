@@ -122,4 +122,4 @@ while 1:
 
     print       # 改行.
 
-    sleep(1)
+    sleep(0.001)
