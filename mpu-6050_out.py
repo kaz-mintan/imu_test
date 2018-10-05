@@ -133,6 +133,6 @@ while 1:
     print       # 改行.
     print(data)
     with open('imu_out.csv','a') as f_handle:
-        np.savetxt(f_handle,data)
+        np.savetxt(f_handle,data,fmt='%.3f',delimiter=",")
 
     sleep(0.001)
