@@ -6,7 +6,8 @@ Adapted for Raspberry Pi by Mikhail Avkhimenia (mikhail.avkhimenia@emlid.com)
 #ifndef _MPU9250_H
 #define _MPU9250_H
 
-#include "SPIdev.h"
+//#include "SPIdev.h"
+#include <bcm2835.h>
 
 class MPU9250 {
 public:
