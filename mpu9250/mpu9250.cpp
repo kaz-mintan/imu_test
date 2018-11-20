@@ -11,6 +11,19 @@ MPU9250::MPU9250()
 {
 }
 
+/*
+void MPU9250::spi_init(){
+  if(!bcm2835_init()) printf("end");
+         
+  bcm2835_spi_begin();
+  bcm2835_spi_setBitOrder(BCM2835_SPI_BIT_ORDER_MSBFIRST);
+  bcm2835_spi_setDataMode(BCM2835_SPI_MODE0);         
+  bcm2835_spi_setClockDivider(BCM2835_SPI_CLOCK_DIVIDER_128); 
+  bcm2835_spi_chipSelect(BCM2835_SPI_CS1);                 
+  bcm2835_spi_setChipSelectPolarity(BCM2835_SPI_CS1, LOW); 
+}
+*/
+
 /*-----------------------------------------------------------------------------------------------
                                     REGISTER READ & WRITE
 usage: use these methods to read and write MPU9250 registers over SPI
@@ -23,8 +36,8 @@ unsigned int MPU9250::WriteReg( uint8_t WriteAddr, uint8_t WriteData )
     unsigned char tx[2] = {WriteAddr, WriteData};
 	unsigned char rx[2] = {0};
 
-//	SPIdev::transfer("/dev/spidev0.1", tx, rx, 2);
-	bcm2835_spi_transfer(tx,rx,2);
+	SPIdev::transfer("/dev/spidev0.1", tx, rx, 2);
+//	bcm2835_spi_transfernb(tx,rx,2);
 
     return rx[1];
 }
@@ -47,8 +60,8 @@ void MPU9250::ReadRegs( uint8_t ReadAddr, uint8_t *ReadBuf, unsigned int Bytes )
 
 	tx[0] = ReadAddr | READ_FLAG;
 
-	//SPIdev::transfer("/dev/spidev0.1", tx, rx, Bytes + 1);
-	bcm2835_spi_transfer(tx,rx,Bytes+1);
+	SPIdev::transfer("/dev/spidev0.1", tx, rx, Bytes + 1);
+	//bcm2835_spi_transfernb(tx,rx,Bytes+1);
 
     for(i=0; i<Bytes; i++)
     	ReadBuf[i] = rx[i + 1];
