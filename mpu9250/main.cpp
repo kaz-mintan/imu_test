@@ -1,11 +1,19 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <iostream>
 #include "MPU9250.h"
 
 int main(){
 	MPU9250 mog_mpu;
 	printf("hello\n");
 	mog_mpu.initialize();
-	mog_mpu.testConnection();
+
+	bool ref;
+
+	ref=mog_mpu.testConnection();
+
+	std::cout<<ref<<std::endl;
+
 
 	float ax,ay,az;
 	float gx,gy,gz;
