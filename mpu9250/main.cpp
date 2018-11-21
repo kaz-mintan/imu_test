@@ -21,6 +21,7 @@ int main(){
 	//void MPU9250::getMotion9(float *ax, float *ay, float *az, float *gx, float *gy, float *gz, float *mx, float *my, float *mz)
 	while(1){
 		mog_mpu.getMotion6(&ax,&ay,&az,&gx,&gy,&gz);
-		printf("hoge,%f%f%f\n",ax,ay,az);
+		printf("hoge,%f\t%f\t%f,",ax,ay,az);
+		printf("hoge,%f\t%f\t%f\n",gx,gy,gz);
 	}
 }
